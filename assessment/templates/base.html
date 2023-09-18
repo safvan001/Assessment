@@ -1,0 +1,43 @@
+<!-- admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Successful Records</th>
+                <th>Status</th>
+                <th>Schedule</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.successful_records }}</td>
+                    <td>
+                        {% if task.is_enabled %}
+                            Enabled
+                        {% else %}
+                            Disabled
+                        {% endif %}
+                    </td>
+                    <td>{{ task.trigger_timing }}</td>
+                    <td>
+                        <a href="{% url 'enable_disable_task' task.id %}">Enable/Disable</a>
+                        <a href="{% url 'change_schedule' task.id %}">Change Schedule</a>
+                        <a href="{% url 'trigger_task' task.id %}">Trigger Task</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
