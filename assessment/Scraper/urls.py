@@ -23,7 +23,7 @@ urlpatterns = [
     # ... other URL patterns ...
 
     # URL for scraping data
-    path('scrape/', views.scrape_data, name='scrape_data'),
+    path('', views.scrape_data, name='scrape_data'),
 
     # URL for the admin dashboard
     path('', views.admin_dashboard, name='admin_dashboard'),
